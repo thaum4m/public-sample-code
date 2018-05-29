@@ -2,6 +2,7 @@
 config
 ├── app.yml
 	logging:
+	  level: 1
 	  splunk:
 	    token: "85a7fcd4-4b44-4a3b-8270-e86f5c956346"
 	    url: "http://159.65.142.229:8088"
@@ -117,6 +118,9 @@ class Config {
 					}
 				}
 				if (i === arr.length-1) {
+					if (!(result instanceof ConfigResult)) {
+						return new ConfigObject(contextPath, result);
+					}
 					return result;
 				}
 			}
@@ -135,6 +139,13 @@ class Config {
 			}
 		}
 
+		if (!(result instanceof ConfigResult)) {
+			if (result instanceof Array) {
+				result = new ConfigArray(contextPath, result);
+			} else {
+				result = new ConfigObject(contextPath, result);
+			}
+		}
 		return result;
 	}
 	static get(contextPath) {
@@ -150,7 +161,7 @@ class ConfigResult extends Config {
 	}
 	get(contextPath) {
 		let isParentContextString = (typeof this.contextPath === 'string' || this.contextPath instanceof String);
-		if (isParentContextString && this.contextPath.lenth > 0) {
+		if (isParentContextString && this.contextPath.length > 0) {
 			contextPath = this.contextPath + '.' + contextPath;
 		}
 		return ConfigResult.getItem(contextPath);
@@ -189,6 +200,10 @@ treeObj = new ConfigObject(
 				logging: new ConfigObject(
 					'root.app.logging',
 					{
+						level: new ConfigNumber(
+							'root.app.logging.level',
+							1
+						),
 						splunk: new ConfigObject(
 							'root.app.logging.splunk',
 							{
@@ -895,9 +910,19 @@ treeObj = new ConfigObject(
 	}
 );
 
-let res = Config.get('root.sbbdev2.modeling.processor');
-if (typeof res !== 'undefined') {
-	console.log('result:', res.getValue()); 
-} else {
-	console.log('no result found!');
-}
+let res = Config.get('root.app.logging').get('level').getValue();
+console.log('result:', res);
+
+/*module.exports = {
+	Config: Config,
+	types: {
+		ConfigArray: ConfigArray,
+		ConfigObject: ConfigObject,
+		ConfigString: ConfigString,
+		ConfigNumber: ConfigNumber,
+		ConfigBoolean: ConfigBoolean,
+		ConfigDir: ConfigDir,
+		ConfigFile: ConfigFile,
+		ConfigUrl: ConfigUrl
+	}
+};*/
