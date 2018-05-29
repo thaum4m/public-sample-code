@@ -1,0 +1,25 @@
+queue: 
+  name: ingestion
+  processor: "jobs/ingestion.js"
+cron: "* */1 * * *"
+fetch_max_records: 100000
+tables:
+  ABN_CROSS_REFERENCE:
+    columns:
+    - ABN_CROSS_REFERENCE_ID
+    fetch_max_records: 5000
+    some_other_field: some other val
+  ACCEPT_FORMAT_FLEXING:
+    columns:
+    - OE_FORMAT_ID
+    - ACTION_TYPE_CD
+    - OE_FIELD_ID
+    - FLEX_TYPE_FLAG
+    - FLEX_CD
+    fetch_max_records: 5000
+    some_other_field: some other val
+  ALIAS_POOL:
+    columns:
+    - ALIAS_POOL_CD
+    fetch_max_records: 5000
+    some_other_field: some other val

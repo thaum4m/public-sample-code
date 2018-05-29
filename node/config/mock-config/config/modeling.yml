@@ -1,0 +1,13 @@
+queue: 
+  name: modeling
+  processor: "jobs/modeling.js"
+cron: "* */1 * * *"
+edges:
+  - from: "fromCollection1"
+    to: "toCollection1"
+    # Edge collection name results in 2 edge collections prefix with edge_
+    # One is postfixed with _forward and the other with _backward
+    edge: "collectionName1"
+  - from: "fromCollection2"
+    to: "toCollection2"
+    edge: "collectionName2"

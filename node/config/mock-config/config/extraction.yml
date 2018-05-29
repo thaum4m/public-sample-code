@@ -1,0 +1,22 @@
+queue: 
+  name: extraction
+  processor: "jobs/extraction.js"
+cron: "* */1 * * *"
+extraction:
+# Extract schema data from collection named 'products'
+- from: products
+  # Send analytics data to collection named 'analytics'
+  to: analytics
+  # Consider each schema as defined by cron string
+  #cron: "0 */1 * * *"
+  cron: ""
+  # Extract at most 100000 records for each schema
+  fetch_max_records: 100000
+  # Define rules for how particular schemata are processed
+  schemata:
+    # Schema 
+    "product1":
+      # Override frequency to consider this schema
+      cron: "*/30 * * * *"
+      # Override max records for this schema
+      fetch_max_records: 5000

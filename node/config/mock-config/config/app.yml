@@ -1,0 +1,19 @@
+# Logging (optional)
+logging:
+  level: 1 # Debugging
+  splunk:
+    token: "85a7fcd4-4b44-4a3b-8270-e86f5c956346"
+    url: "http://159.65.142.229:8088"
+# Queue
+queue:
+  uri: redis://127.0.0.1:6379
+# ArangoDB
+database:
+  name: "schema-registry" 
+  uri: "http://159.65.142.229:8529"
+# Data components
+schedules:
+- ingestion
+- extraction
+- modeling
+- modeling-update
