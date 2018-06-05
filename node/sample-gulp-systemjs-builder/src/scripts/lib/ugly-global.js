@@ -1,0 +1,1 @@
+var uglyGlobal = 'yuck';
