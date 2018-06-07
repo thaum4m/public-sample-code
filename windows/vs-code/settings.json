@@ -1,0 +1,29 @@
+{
+	"git.ignoreMissingGitWarning": true,
+	"update.channel": "none",
+	"editor.detectIndentation": false,
+	"editor.insertSpaces": false,
+	//"workbench.colorTheme": "Default Light+",
+	"editor.formatOnSave": true,
+	"editor.autoClosingBrackets": false,
+	"editor.formatOnType": true,
+	"editor.formatOnPaste": true,
+	"editor.wordWrap": "on",
+	"window.zoomLevel": 0,
+	// Git Bash
+	"terminal.integrated.shell.windows": "C:\\PortableApps\\Git\\bin\\bash.exe",
+	"shellLauncher.shells.windows": [
+		{
+			"shell": "C:\\PortableApps\\Git\\bin\\bash.exe",
+			"label": "Git bash"
+		},
+		{
+			"shell": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+			"label": "PowerShell"
+		},
+		{
+			"shell": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+			"label": "cmd"
+		}
+	]
+}
